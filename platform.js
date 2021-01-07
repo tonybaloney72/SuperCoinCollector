@@ -1,10 +1,10 @@
 class Platform {
-    constructor(x, y, width, height, rotation = 0) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        dfg
+        this.wall = height > width ? true : false;
     }
 
     display() {

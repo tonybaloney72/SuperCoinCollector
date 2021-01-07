@@ -6,7 +6,8 @@ levels_arr = [
             pos_x: 400,
             pos_y: 300,
             width: 200,
-            height: 30 }],
+            height: 30,
+            rotation: 0 }],
         coins: [{
             pos_x: 400,
             pos_y: 100 }],
@@ -20,11 +21,13 @@ levels_arr = [
             pos_x: 100,
             pos_y: 300,
             width: 100,
-            height: 20 }, {
+            height: 20,
+            rotation: 0 }, {
             pos_x: 700,
             pos_y: 300,
             width: 100,
-            height: 20 }],
+            height: 20,
+            rotation: 0 }],
         
         coins: [{
             pos_x: 100,
@@ -42,57 +45,68 @@ levels_arr = [
             pos_x: 400,
             pos_y: 325,
             width: 100,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 325,
             pos_y: 315,
             width: 40,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 300,
             pos_y: 300,
             width: 40,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 275,
             pos_y: 285,
             width: 35,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 255,
             pos_y: 270,
             width: 30,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 475,
             pos_y: 315,
             width: 40,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 500,
             pos_y: 300,
             width: 40,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 525,
             pos_y: 285,
             width: 40,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 545,
             pos_y: 270,
             width: 30,
-            height: 10
+            height: 10,
+            rotation: 0
         },{
             pos_x: 350,
             pos_y: 175,
             width: 15,
-            height: 60
+            height: 60,
+            rotation: 0
         },{
             pos_x: 450,
             pos_y: 175,
             width: 15,
-            height: 60
+            height: 60,
+            rotation: 0
         }], coins: [{
             pos_x: 350,
             pos_y: 175
@@ -107,12 +121,16 @@ levels_arr = [
     },  
     { // level 4
         platforms: [{
-            pos_x: 400,
-            pos_y: 200,
-            width: 100,
-            height: 10,
-            rotation: 5
-        }], coins: [{
+            pos_x: 650,
+            pos_y: 225,
+            width: 25,
+            height: 350
+        },{
+            pos_x: 150,
+            pos_y: 225,
+            width: 25,
+            height: 350
+        },], coins: [{
             pos_x: 0,
             pos_y: 0
         }], player: {
@@ -126,52 +144,62 @@ levels_arr = [
             pos_x: 650,
             pos_y: 350,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 650,
             pos_y: 275,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 650,
             pos_y: 200,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 650,
             pos_y: 125,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 650,
             pos_y: 50,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 150,
             pos_y: 350,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 150,
             pos_y: 275,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 150,
             pos_y: 200,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 150,
             pos_y: 125,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 150,
             pos_y: 50,
             width: 50,
-            height: 10
+            height: 10,
+            rotation: 0
         }, ],
 
         coins: [{
@@ -216,27 +244,32 @@ levels_arr = [
             pos_x: 400,
             pos_y: 350,
             width: 800,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 400,
             pos_y: 275,
             width: 800,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 400,
             pos_y: 200,
             width: 800,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 400,
             pos_y: 125,
             width: 800,
-            height: 10
+            height: 10,
+            rotation: 0
         }, {
             pos_x: 400,
             pos_y: 50,
             width: 800,
-            height: 10
+            height: 10,
+            rotation: 0
         }], coins: [{
             pos_x: 400,
             pos_y: 378

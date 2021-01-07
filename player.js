@@ -26,10 +26,21 @@ class Player {
 
     collide(pf) {
         if (this.x >= pf.x - pf.width/2 && this.x <= pf.x + pf.width/2 && this.y + this.height/2 >= pf.y - pf.height/2 && this.y + this.height/2 <= pf.y + pf.height/2 && this.jumping === false && this.falling === false){
-            this.y = pf.y - pf.height/2 - this.height/2;
+            if (!pf.wall) this.y = pf.y - pf.height/2 - this.height/2;
             this.vel_y = 0;
             this.jumpCount = 0;
         }
+        if (pf.wall) {
+            if (this.y > pf.y - pf.height / 2 && this.y < pf.y + pf.height && this.x + this.width/2 > pf.x - pf.width / 2 && this.x - this.width/2 < pf.x + pf.width / 2) {
+                if (pf.x > this.x) this.x = (pf.x - (pf.width / 2)) - (this.width / 2)
+                if (pf.x < this.x) this.x = (pf.x + (pf.width / 2)) + (this.width / 2)
+            }
+        }
+        // if (this.x >= pf.x - pf.width/2 && this.x <= pf.x + pf.width/2 && this.y + this.height/2 >= pf.y - pf.height/2 && this.y + this.height/2 <= pf.y + pf.height/2 && this.jumping === false && this.falling === false){
+        //     this.y = pf.y - pf.height/2 - this.height/2;
+        //     this.vel_y = 0;
+        //     this.jumpCount = 0;
+        // }
     }
 
     jump() {

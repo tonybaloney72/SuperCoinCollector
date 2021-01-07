@@ -2,8 +2,8 @@ let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvl
 
 let levels = levels_arr, y = -300;
 
-// let currentLevel = 0;
-let currentLevel = 3;
+// let currentLevel = 10;
+let currentLevel = 2;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -23,7 +23,7 @@ function setup() {
 	} else {
 		player = new Player(levels[currentLevel].player.pos_x, levels[currentLevel].player.pos_y, levels[currentLevel].player.width)
 		
-		platforms = levels[currentLevel].platforms.map(pf => new Platform(pf.pos_x, pf.pos_y, pf.width, pf.height))
+		platforms = levels[currentLevel].platforms.map(pf => new Platform(pf.pos_x, pf.pos_y, pf.width, pf.height, pf.rotation))
 		
 		coins = levels[currentLevel].coins.map(coin => new Coin(coin.pos_x, coin.pos_y))
 	}
@@ -125,7 +125,6 @@ function beatLevel() {
 			gameComplete();
 		} else {
 			currentLevel += 1
-			console.log("beat level")
 			setup();
 		}
 	}
