@@ -3,7 +3,7 @@ let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvl
 let levels = levels_arr, y = -300;
 
 // let currentLevel = 0;
-let currentLevel = 10;
+let currentLevel = 3;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -16,10 +16,12 @@ function setup() {
 	rectMode(CENTER);
 	textAlign(CENTER);
 	
-	if (!levels[currentLevel]) {
+	if (!levels) {
+		gameOver();
+	} else if (!levels[currentLevel]) {
 		gameOver();
 	} else {
-		player = new Player(levels[currentLevel].player_pos.pos_x, levels[currentLevel].player_pos.pos_y)
+		player = new Player(levels[currentLevel].player.pos_x, levels[currentLevel].player.pos_y, levels[currentLevel].player.width)
 		
 		platforms = levels[currentLevel].platforms.map(pf => new Platform(pf.pos_x, pf.pos_y, pf.width, pf.height))
 		
@@ -30,7 +32,7 @@ function setup() {
 function draw() {
 
 	if (y === 50) {
-		if (slider === undefined) {
+		if (!slider) {
 			createP("Move with Arrow keys: ⬅ ⬆ ➡").parent("instructions")
 			createP("Fall through platforms: Hold ⬆ or ⬇").parent("instructions")
 			createP("Collect all coins to progress to the next level.").parent("instructions")
@@ -40,7 +42,7 @@ function draw() {
 		song.loop();
 	} 
 	else if (currentLevel === 0) {
-		if (newSlider === undefined) {
+		if (!newSlider) {
 			newSlider = createSlider(0, 1, 0.20, 0.01)
 			lvlSong.loop();
 		}
@@ -122,8 +124,9 @@ function beatLevel() {
 		if (currentLevel === 9) {
 			gameComplete();
 		} else {
-		currentLevel += 1
-		setup();
+			currentLevel += 1
+			console.log("beat level")
+			setup();
 		}
 	}
 }
@@ -141,9 +144,8 @@ function buttonPressed() {
 	player.jump();
 }
 
-
 function levelOne() {
-	playButton.hide();
+	if (playButton) playButton.hide();
 	levelLogic()
 }
 
@@ -184,6 +186,7 @@ function levelTen() {
 }
 
 function gameOver() {
+	if (playButton) playButton.show()
 }
 
 function gameComplete() {

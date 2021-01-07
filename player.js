@@ -1,18 +1,19 @@
 class Player {
 
-    constructor(x, y) {
+    constructor(x, y, width) {
         this.x = x;
         this.y = y;
-        this.width = 20;
-        this.height = 50;
+        this.width = width;
+        this.height = this.width * 2.5;
         this.vel_x = 0;
-        this.vel_y = 3;
-        this.grav = 3;
+        this.vel_y = 3.5;
+        this.grav = 3.5;
         this.jumping = false;
         this.direction = 1;
-        this.jumpHeight = 13;
-        this.groundLevel = 375;
-        this.maxJump = 30;
+        // this.jumpHeight = 13;
+        this.jumpHeight = this.height * 0.16 + 6;
+        this.groundLevel = 400 - this.height/2;
+        this.maxJump = this.height/2;
         this.jumpCount = 0;
         this.falling = false;
     }
@@ -25,7 +26,6 @@ class Player {
 
     collide(pf) {
         if (this.x >= pf.x - pf.width/2 && this.x <= pf.x + pf.width/2 && this.y + this.height/2 >= pf.y - pf.height/2 && this.y + this.height/2 <= pf.y + pf.height/2 && this.jumping === false && this.falling === false){
-            // console.log(this.jumping);
             this.y = pf.y - pf.height/2 - this.height/2;
             this.vel_y = 0;
             this.jumpCount = 0;
@@ -33,11 +33,7 @@ class Player {
     }
 
     jump() {
-        if (keyIsDown(UP_ARROW)) {
-            this.jumping = true;
-        } else {
-            this.jumping = false;
-        }
+        keyIsDown(UP_ARROW) ? this.jumping = true : this.jumping = false;
     }
 
     move() {
@@ -59,6 +55,7 @@ class Player {
 
     gravity() {
         //collision with ground level
+        // this.y = constrain(this.y, 0, this.groundLevel)
         if (this.y >= this.groundLevel && this.jumping === false) {
             // this.y += 0;
             this.jumpCount = 0;
