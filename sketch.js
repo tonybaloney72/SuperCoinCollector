@@ -1,4 +1,4 @@
-let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, vol;
+let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame;
 
 let levels = levels_arr, y = -300;
 
@@ -31,14 +31,17 @@ function draw() {
 
 	if (y === 50) {
 		if (slider === undefined) {
-			vol = createP("Volume Slider").parent("instructions")
+			createP("Move with Arrow keys: ⬅ ⬆ ➡").parent("instructions")
+			createP("Fall through platforms: Hold ⬆ or ⬇").parent("instructions")
+			createP("Collect all coins to progress to the next level.").parent("instructions")
+			createP("Volume Slider").parent("instructions")
 			slider = createSlider(0, 1, 0.03, 0.01)
 		}
 		song.loop();
 	} 
 	else if (currentLevel === 0) {
 		if (newSlider === undefined) {
-			newSlider = createSlider(0, 1, 0.13, 0.01)
+			newSlider = createSlider(0, 1, 0.20, 0.01)
 			lvlSong.loop();
 		}
 	}
@@ -56,8 +59,9 @@ function draw() {
 		case 7: levelEight(); break;
 		case 8: levelNine(); break;
 		case 9: levelTen(); break;
-		case 10: welcome(); break;
-		case 11: gameOver(); break;
+		case 10: splash(); break;
+		case 11: welcome(); break;
+		case 12: gameOver(); break;
 		default: gameOver(); break;
 	}
 }
@@ -65,15 +69,13 @@ function draw() {
 function welcome() {
 
 	background("black");
+	launchGame.hide();
 	y > 50 ? y : y += 2
 	image(titleImg, 50, y, 700, 300);
 	
 	if (y === 52 && playButton === undefined){
 		textSize(24)
-		playButton = createButton("PLAY");
-		playButton.parent('sketch')
-		playButton.addClass('play-btn')
-		playButton.style('font-style', '24px')
+		playButton = createButton("PLAY").parent('sketch').addClass('play-btn')
 		playButton.mousePressed(playBtn)
 	}
 	
@@ -84,6 +86,18 @@ function playBtn() {
 	song.stop();
 	slider.hide();
 	setup();
+}
+
+function splash() {
+	if (launchGame === undefined) {
+		textSize(24)
+		launchGame = createButton("LAUNCH").parent('sketch').addClass('launch-btn')
+		launchGame.mousePressed(launchBtn)
+	}
+}
+
+function launchBtn() {
+	currentLevel = 11;
 }
 
 function levelLogic() {
