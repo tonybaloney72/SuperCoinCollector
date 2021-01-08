@@ -30,7 +30,7 @@ class Player {
             this.jumpCount = 0;
         }
         if (pf.wall) {
-            if (this.y > pf.y - pf.height / 2 && this.y < pf.y + pf.height && this.x + this.width/2 > pf.x - pf.width / 2 && this.x - this.width/2 < pf.x + pf.width / 2) {
+            if (this.y > pf.y - pf.height / 2 && this.y < pf.y + pf.height / 2 && this.x + this.width/2 > pf.x - pf.width / 2 && this.x - this.width/2 < pf.x + pf.width / 2) {
                 if (pf.x > this.x) this.x = (pf.x - (pf.width / 2)) - (this.width / 2)
                 if (pf.x < this.x) this.x = (pf.x + (pf.width / 2)) + (this.width / 2)
             }

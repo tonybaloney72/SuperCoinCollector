@@ -1,9 +1,11 @@
 let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton;
 
+let thankYou, enjoy;
+
 let levels = levels_arr, y = -300;
 
 // let currentLevel = 10;
-let currentLevel = 10;
+let currentLevel = 6;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -101,7 +103,7 @@ function launchBtn() {
 }
 
 function levelLogic() {
-	if (!resetButton) resetButton = createButton("I'M STUCK!").parent('sketch').addClass('reset-btn').mousePressed(resetBtn)
+	if (!resetButton) resetButton = createButton("Restart Level").parent('sketch').addClass('reset-btn').mousePressed(resetBtn)
 	backDrop();
 	player.display();
 	platforms.forEach(pf => pf.display())
@@ -173,14 +175,18 @@ function levelSix() {
 
 function levelSeven() {
 	levelLogic()
+	if (!thankYou) thankYou = createP("Thank you for playing my silly little game").addClass("thank-you")
 }
 
 function levelEight() {
 	levelLogic()
+	if (thankYou) thankYou.hide();
+	if (!enjoy) enjoy = createP("I hope you've enjoyed it!").addClass("thank-you")
 }
 
 function levelNine() {
 	levelLogic()
+	if(!enjoy) enjoy.hide();
 }
 
 function levelTen() {
