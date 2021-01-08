@@ -4,8 +4,8 @@ let thankYou, enjoy, oneMore;
 
 let levels = levels_arr, y = -300;
 
-// let currentLevel = 10;
-let currentLevel = 7;
+let currentLevel = 9;
+// let currentLevel = 9;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -187,11 +187,12 @@ function levelEight() {
 function levelNine() {
 	levelLogic()
 	if(enjoy) enjoy.hide();
-	if (!oneMore) oneMore = createP("One more level!")
+	if (!oneMore) oneMore = createP("One more level!").addClass("one-more")
 }
 
 function levelTen() {
 	levelLogic()
+	if(oneMore) oneMore.hide();
 }
 
 function gameOver() {

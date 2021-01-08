@@ -52,3 +52,11 @@ p {
     font-weight: 600;
     color: rgb(100, 0, 200);
 }
+
+.one-more {
+    position: absolute;
+    top: 425px;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}
