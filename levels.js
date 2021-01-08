@@ -511,16 +511,120 @@ levels_arr = [
     }, {	// level 8
         platforms: [{
             pos_x: 400,
-            pos_y: 300,
+            pos_y: 150,
+            width: 50,
+            height: 25,
+            rotation: 0 
+        },{
+            pos_x: 400,
+            pos_y: 175,
+            width: 100,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 400,
+            pos_y: 200,
+            width: 150,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 400,
+            pos_y: 225,
             width: 200,
-            height: 30,
-            rotation: 0 }],
-        coins: [{
+            height: 25,
+            rotation: 0  
+        },{
             pos_x: 400,
-            pos_y: 100 }],
-        
-        player: {
+            pos_y: 250,
+            width: 250,
+            height: 25,
+            rotation: 0  
+        },{
             pos_x: 400,
+            pos_y: 275,
+            width: 300,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 400,
+            pos_y: 300,
+            width: 350,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 400,
+            pos_y: 325,
+            width: 400,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 250,
+            pos_y: 350,
+            width: 150,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 225,
+            pos_y: 375,
+            width: 150,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 200,
+            pos_y: 393.5,
+            width: 150,
+            height: 12.5,
+            rotation: 0  
+        },{
+            pos_x: 550,
+            pos_y: 350,
+            width: 150,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 575,
+            pos_y: 375,
+            width: 150,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 600,
+            pos_y: 393.5,
+            width: 150,
+            height: 12.5,
+            rotation: 0  
+        },{
+            pos_x: 325,
+            pos_y: 337.5,
+            width: 100,
+            height: 125,
+            rotation: 0  
+        },{
+            pos_x: 475,
+            pos_y: 337.5,
+            width: 100,
+            height: 125,
+            rotation: 0  
+        },{
+            pos_x: 650,
+            pos_y: 375,
+            width: 2,
+            height: 25,
+            rotation: 0  
+        },{
+            pos_x: 150,
+            pos_y: 375,
+            width: 2,
+            height: 25,
+            rotation: 0  
+        }], coins: [{
+            pos_x: 400,
+            pos_y: 370 
+        },{
+            pos_x: 400,
+            pos_y: 115 
+        },], player: {
+            pos_x: 50,
             pos_y: 375,
             width: 20 }
     }, {	// level 9

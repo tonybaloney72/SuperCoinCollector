@@ -1,11 +1,11 @@
 let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton;
 
-let thankYou, enjoy;
+let thankYou, enjoy, oneMore;
 
 let levels = levels_arr, y = -300;
 
 // let currentLevel = 10;
-let currentLevel = 6;
+let currentLevel = 7;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -186,7 +186,8 @@ function levelEight() {
 
 function levelNine() {
 	levelLogic()
-	if(!enjoy) enjoy.hide();
+	if(enjoy) enjoy.hide();
+	if (!oneMore) oneMore = createP("One more level!")
 }
 
 function levelTen() {
