@@ -534,7 +534,7 @@ levels_arr = [
             pos_x: 200,
             pos_y: 393.5,
             width: 150,
-            height: 12.  
+            height: 13
         },{
             pos_x: 550,
             pos_y: 350,
@@ -549,7 +549,7 @@ levels_arr = [
             pos_x: 600,
             pos_y: 393.5,
             width: 150,
-            height: 12.  
+            height: 13
         },{
             pos_x: 325,
             pos_y: 337.5,

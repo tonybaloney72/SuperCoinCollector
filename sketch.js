@@ -1,16 +1,22 @@
 let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton;
 
-let thankYou, enjoy, oneMore;
+let thankYou, enjoy, oneMore, final;
+
+let gitX = -100;
+let linkedX = 800;
+let finishDiv, gitLink, gitImg, linkLink, email, titleScreen, linkImg; 
 
 let levels = levels_arr, y = -300;
 
-let currentLevel = 9;
+let currentLevel = 7;
 // let currentLevel = 9;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
 	song = loadSound('assets/bfg-edit.mp3')
 	lvlSong = loadSound('assets/pc.mp3')
+	gitImg = loadImage('assets/GitHub.png')
+	linkImg = loadImage('assets/linkImg.png')
 }
 
 function setup() {
@@ -39,12 +45,18 @@ function draw() {
 			createP("Collect all coins to progress to the next level.").parent("instructions")
 			createP("Volume Slider").parent("instructions")
 			slider = createSlider(0, 1, 0.03, 0.01)
+			song.loop();
+		} else if (slider && !song.isPlaying()) {
+			slider.show();
+			song.loop();
 		}
-		song.loop();
 	} 
 	else if (currentLevel === 0) {
 		if (!newSlider) {
 			newSlider = createSlider(0, 1, 0.20, 0.01)
+			lvlSong.loop();
+		} else if (newSlider && !lvlSong.isPlaying()) {
+			newSlider.show();
 			lvlSong.loop();
 		}
 	}
@@ -65,6 +77,7 @@ function draw() {
 		case 10: splash(); break;
 		case 11: welcome(); break;
 		case 12: gameOver(); break;
+		case 13: gameComplete(); break;
 		default: gameOver(); break;
 	}
 }
@@ -79,19 +92,50 @@ function welcome() {
 		textSize(24)
 		playButton = createButton("PLAY").parent('sketch').addClass('play-btn')
 		playButton.mousePressed(playBtn)
+	} else if (y === 52 && playButton) {
+		playButton.show();
+		playButton.mousePressed(playBtn)
 	}
 	
 }
 
+function gameComplete() {
+	background("black");
+	if (final) final.hide();
+	gitX < 200 ? gitX += 2 : gitX
+	linkedX > 500 ? linkedX -= 2 : linkedX
+	image(gitImg, gitX, 200, 100, 100);
+	image(linkImg, linkedX, 200, 100, 100);
+	if (linkedX === 500 && titleScreen === undefined) {
+		titleScreen = createButton("Play Again?").parent('sketch').addClass('play-btn')
+		titleScreen.mousePressed(title)
+	} else if (linkedX === 500 && titleScreen) {
+		titleScreen.show();
+		titleScreen.mousePressed(title)
+	}
+}
+
+function title() {
+	currentLevel = 10
+	titleScreen.hide();
+	gitX = -100;
+	linkedX = 800;
+	launchGame.show();
+	lvlSong.stop();
+	newSlider.hide();
+}
+
 function playBtn() {
 	currentLevel = 0;
+	y = -300
 	song.stop();
 	slider.hide();
 	setup();
 }
 
 function splash() {
-	if (launchGame === undefined) {
+	background("black")
+	if (!launchGame) {
 		textSize(24)
 		launchGame = createButton("LAUNCH").parent('sketch').addClass('launch-btn')
 		launchGame.mousePressed(launchBtn)
@@ -123,7 +167,7 @@ function levelLogic() {
 function beatLevel() {
 	if (coins.length === 0) {
 		if (currentLevel === 9) {
-			gameComplete();
+			currentLevel = 13;
 		} else {
 			currentLevel += 1
 			setup();
@@ -175,29 +219,31 @@ function levelSix() {
 
 function levelSeven() {
 	levelLogic()
+	if (thankYou) thankYou.show();
 	if (!thankYou) thankYou = createP("Thank you for playing my silly little game").addClass("thank-you")
 }
 
 function levelEight() {
 	levelLogic()
 	if (thankYou) thankYou.hide();
+	if (enjoy) enjoy.show();
 	if (!enjoy) enjoy = createP("I hope you've enjoyed it!").addClass("thank-you")
 }
 
 function levelNine() {
 	levelLogic()
 	if(enjoy) enjoy.hide();
+	if (oneMore) oneMore.show();
 	if (!oneMore) oneMore = createP("One more level!").addClass("one-more")
 }
 
 function levelTen() {
 	levelLogic()
-	if(oneMore) oneMore.hide();
+	if (oneMore) oneMore.hide();
+	if (final) final.show();
+	if (!final) final = createP("You can stick to the walls! Just hold ⬅ or ➡").addClass("one-more")
 }
 
 function gameOver() {
 	if (playButton) playButton.show()
-}
-
-function gameComplete() {
 }
