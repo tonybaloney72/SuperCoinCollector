@@ -126,13 +126,50 @@ levels_arr = [
             width: 25,
             height: 350
         },{
-            pos_x: 150,
-            pos_y: 225,
-            width: 25,
-            height: 350
+            pos_x: 100,
+            pos_y: 350,
+            width: 100,
+            height: 10
+        },{
+            pos_x: 200,
+            pos_y: 300,
+            width: 100,
+            height: 10
+        },{
+            pos_x: 300,
+            pos_y: 250,
+            width: 100,
+            height: 10
+        },{
+            pos_x: 400,
+            pos_y: 200,
+            width: 100,
+            height: 10
+        },{
+            pos_x: 500,
+            pos_y: 150,
+            width: 100,
+            height: 10
+        },{
+            pos_x: 600,
+            pos_y: 100,
+            width: 100,
+            height: 10
         },], coins: [{
-            pos_x: 0,
-            pos_y: 0
+            pos_x: 625,
+            pos_y: 150
+        },{
+            pos_x: 625,
+            pos_y: 200
+        },{
+            pos_x: 625,
+            pos_y: 250
+        },{
+            pos_x: 625,
+            pos_y: 300
+        },{
+            pos_x: 725,
+            pos_y: 350
         }], player: {
             pos_x: 400,
             pos_y: 375,

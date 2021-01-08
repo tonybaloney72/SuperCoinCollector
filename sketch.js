@@ -1,9 +1,9 @@
-let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame;
+let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton;
 
 let levels = levels_arr, y = -300;
 
+// let currentLevel = 10;
 let currentLevel = 10;
-// let currentLevel = 2;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -30,7 +30,6 @@ function setup() {
 }
 
 function draw() {
-
 	if (y === 50) {
 		if (!slider) {
 			createP("Move with Arrow keys: ⬅ ⬆ ➡").parent("instructions")
@@ -69,7 +68,6 @@ function draw() {
 }
  
 function welcome() {
-
 	background("black");
 	launchGame.hide();
 	y > 50 ? y : y += 2
@@ -103,6 +101,7 @@ function launchBtn() {
 }
 
 function levelLogic() {
+	if (!resetButton) resetButton = createButton("I'M STUCK!").parent('sketch').addClass('reset-btn').mousePressed(resetBtn)
 	backDrop();
 	player.display();
 	platforms.forEach(pf => pf.display())
@@ -141,6 +140,10 @@ function backDrop() {
 function buttonPressed() {
 	player.move();
 	player.jump();
+}
+
+function resetBtn() {
+	setup();
 }
 
 function levelOne() {

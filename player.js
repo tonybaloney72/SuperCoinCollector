@@ -10,7 +10,6 @@ class Player {
         this.grav = 3.5;
         this.jumping = false;
         this.direction = 1;
-        // this.jumpHeight = 13;
         this.jumpHeight = this.height * 0.16 + 6;
         this.groundLevel = 400 - this.height/2;
         this.maxJump = this.height/2;
@@ -36,11 +35,6 @@ class Player {
                 if (pf.x < this.x) this.x = (pf.x + (pf.width / 2)) + (this.width / 2)
             }
         }
-        // if (this.x >= pf.x - pf.width/2 && this.x <= pf.x + pf.width/2 && this.y + this.height/2 >= pf.y - pf.height/2 && this.y + this.height/2 <= pf.y + pf.height/2 && this.jumping === false && this.falling === false){
-        //     this.y = pf.y - pf.height/2 - this.height/2;
-        //     this.vel_y = 0;
-        //     this.jumpCount = 0;
-        // }
     }
 
     jump() {

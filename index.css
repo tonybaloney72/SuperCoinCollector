@@ -29,6 +29,11 @@ button {
 
 button:hover { background: white }
 
+.reset-btn {
+    top: 515px;
+    left: 600px;
+}
+
 #instructions {
     display: flex;
     flex-direction: column;
