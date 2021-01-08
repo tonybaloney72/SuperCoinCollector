@@ -2,7 +2,7 @@ let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvl
 
 let levels = levels_arr, y = -300;
 
-let currentLevel = 0;
+let currentLevel = 10;
 // let currentLevel = 2;
 
 function preload() {
