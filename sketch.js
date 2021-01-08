@@ -1,15 +1,8 @@
-let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton;
+let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton, thankYou, enjoy, oneMore, final, gitImg, titleScreen, linkImg;
 
-let thankYou, enjoy, oneMore, final;
+let levels = levels_arr, y = -300, gitX = -100, linkedX = 800;
 
-let gitX = -100;
-let linkedX = 800;
-let finishDiv, gitLink, gitImg, linkLink, email, titleScreen, linkImg; 
-
-let levels = levels_arr, y = -300;
-
-let currentLevel = 7;
-// let currentLevel = 9;
+let currentLevel = 13;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
@@ -102,6 +95,7 @@ function welcome() {
 function gameComplete() {
 	background("black");
 	if (final) final.hide();
+	if (resetButton) resetButton.hide();
 	gitX < 200 ? gitX += 2 : gitX
 	linkedX > 500 ? linkedX -= 2 : linkedX
 	image(gitImg, gitX, 200, 100, 100);
@@ -113,6 +107,16 @@ function gameComplete() {
 		titleScreen.show();
 		titleScreen.mousePressed(title)
 	}
+	if (mouseX > 200 && mouseX < 300 && mouseY > 200 && mouseY < 300 || mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300) {
+		cursor('pointer')
+	} else {
+		cursor('auto')
+	}
+}
+
+function mouseClicked() {
+	if (currentLevel === 13 && mouseX > 200 && mouseX < 300 && mouseY > 200 && mouseY < 300 ) document.getElementById('github-link').click();
+	if (currentLevel === 13 && mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300 ) document.getElementById('linked-link').click();
 }
 
 function title() {
@@ -148,6 +152,7 @@ function launchBtn() {
 
 function levelLogic() {
 	if (!resetButton) resetButton = createButton("Restart Level").parent('sketch').addClass('reset-btn').mousePressed(resetBtn)
+	if (resetButton) resetButton.show();
 	backDrop();
 	player.display();
 	platforms.forEach(pf => pf.display())
