@@ -2,7 +2,7 @@ let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvl
 
 let levels = levels_arr, y = -300, gitX = -100, linkedX = 800;
 
-let currentLevel = 13;
+let currentLevel = 10;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
