@@ -8,9 +8,7 @@ body {
     background: black;
 }
 
-.play-btn {
-    font-size: 24px;
-}
+.play-btn { font-size: 24px; }
 
 canvas { margin:auto; }
 
@@ -29,6 +27,11 @@ button {
 
 button:hover { background: white }
 
+.reset-btn {
+    top: 515px;
+    left: 600px;
+}
+
 #instructions {
     display: flex;
     flex-direction: column;
@@ -40,4 +43,20 @@ button:hover { background: white }
 p {
     margin: 10px;
     color: white;
+}
+
+.thank-you {
+    position: absolute;
+    top: 50px;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(100, 0, 200);
+}
+
+.one-more {
+    position: absolute;
+    top: 425px;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
 }

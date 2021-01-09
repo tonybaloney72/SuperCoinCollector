@@ -1,14 +1,15 @@
-let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame;
+let player, platforms, coins, playButton, titleImg, song, slider, newSlider, lvlSong, launchGame, resetButton, thankYou, enjoy, oneMore, final, gitImg, titleScreen, linkImg;
 
-let levels = levels_arr, y = -300;
+let levels = levels_arr, y = -300, gitX = -100, linkedX = 800;
 
-// let currentLevel = 0;
 let currentLevel = 10;
 
 function preload() {
 	titleImg = loadImage('assets/super-resize.png');
 	song = loadSound('assets/bfg-edit.mp3')
 	lvlSong = loadSound('assets/pc.mp3')
+	gitImg = loadImage('assets/GitHub.png')
+	linkImg = loadImage('assets/linkImg.png')
 }
 
 function setup() {
@@ -16,32 +17,39 @@ function setup() {
 	rectMode(CENTER);
 	textAlign(CENTER);
 	
-	if (!levels[currentLevel]) {
+	if (!levels) {
+		gameOver();
+	} else if (!levels[currentLevel]) {
 		gameOver();
 	} else {
-		player = new Player(levels[currentLevel].player_pos.pos_x, levels[currentLevel].player_pos.pos_y)
+		player = new Player(levels[currentLevel].player.pos_x, levels[currentLevel].player.pos_y, levels[currentLevel].player.width)
 		
-		platforms = levels[currentLevel].platforms.map(pf => new Platform(pf.pos_x, pf.pos_y, pf.width, pf.height))
+		platforms = levels[currentLevel].platforms.map(pf => new Platform(pf.pos_x, pf.pos_y, pf.width, pf.height, pf.rotation))
 		
 		coins = levels[currentLevel].coins.map(coin => new Coin(coin.pos_x, coin.pos_y))
 	}
 }
 
 function draw() {
-
 	if (y === 50) {
-		if (slider === undefined) {
+		if (!slider) {
 			createP("Move with Arrow keys: ⬅ ⬆ ➡").parent("instructions")
 			createP("Fall through platforms: Hold ⬆ or ⬇").parent("instructions")
 			createP("Collect all coins to progress to the next level.").parent("instructions")
 			createP("Volume Slider").parent("instructions")
 			slider = createSlider(0, 1, 0.03, 0.01)
+			song.loop();
+		} else if (slider && !song.isPlaying()) {
+			slider.show();
+			song.loop();
 		}
-		song.loop();
 	} 
 	else if (currentLevel === 0) {
-		if (newSlider === undefined) {
+		if (!newSlider) {
 			newSlider = createSlider(0, 1, 0.20, 0.01)
+			lvlSong.loop();
+		} else if (newSlider && !lvlSong.isPlaying()) {
+			newSlider.show();
 			lvlSong.loop();
 		}
 	}
@@ -62,12 +70,12 @@ function draw() {
 		case 10: splash(); break;
 		case 11: welcome(); break;
 		case 12: gameOver(); break;
+		case 13: gameComplete(); break;
 		default: gameOver(); break;
 	}
 }
  
 function welcome() {
-
 	background("black");
 	launchGame.hide();
 	y > 50 ? y : y += 2
@@ -77,19 +85,61 @@ function welcome() {
 		textSize(24)
 		playButton = createButton("PLAY").parent('sketch').addClass('play-btn')
 		playButton.mousePressed(playBtn)
+	} else if (y === 52 && playButton) {
+		playButton.show();
+		playButton.mousePressed(playBtn)
 	}
 	
 }
 
+function gameComplete() {
+	background("black");
+	if (final) final.hide();
+	if (resetButton) resetButton.hide();
+	gitX < 200 ? gitX += 2 : gitX
+	linkedX > 500 ? linkedX -= 2 : linkedX
+	image(gitImg, gitX, 200, 100, 100);
+	image(linkImg, linkedX, 200, 100, 100);
+	if (linkedX === 500 && titleScreen === undefined) {
+		titleScreen = createButton("Play Again?").parent('sketch').addClass('play-btn')
+		titleScreen.mousePressed(title)
+	} else if (linkedX === 500 && titleScreen) {
+		titleScreen.show();
+		titleScreen.mousePressed(title)
+	}
+	if (mouseX > 200 && mouseX < 300 && mouseY > 200 && mouseY < 300 || mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300) {
+		cursor('pointer')
+	} else {
+		cursor('auto')
+	}
+}
+
+function mouseClicked() {
+	if (currentLevel === 13 && mouseX > 200 && mouseX < 300 && mouseY > 200 && mouseY < 300 ) document.getElementById('github-link').click();
+	if (currentLevel === 13 && mouseX > 500 && mouseX < 600 && mouseY > 200 && mouseY < 300 ) document.getElementById('linked-link').click();
+}
+
+function title() {
+	currentLevel = 10
+	titleScreen.hide();
+	gitX = -100;
+	linkedX = 800;
+	launchGame.show();
+	lvlSong.stop();
+	newSlider.hide();
+}
+
 function playBtn() {
 	currentLevel = 0;
+	y = -300
 	song.stop();
 	slider.hide();
 	setup();
 }
 
 function splash() {
-	if (launchGame === undefined) {
+	background("black")
+	if (!launchGame) {
 		textSize(24)
 		launchGame = createButton("LAUNCH").parent('sketch').addClass('launch-btn')
 		launchGame.mousePressed(launchBtn)
@@ -101,6 +151,8 @@ function launchBtn() {
 }
 
 function levelLogic() {
+	if (!resetButton) resetButton = createButton("Restart Level").parent('sketch').addClass('reset-btn').mousePressed(resetBtn)
+	if (resetButton) resetButton.show();
 	backDrop();
 	player.display();
 	platforms.forEach(pf => pf.display())
@@ -120,10 +172,10 @@ function levelLogic() {
 function beatLevel() {
 	if (coins.length === 0) {
 		if (currentLevel === 9) {
-			gameComplete();
+			currentLevel = 13;
 		} else {
-		currentLevel += 1
-		setup();
+			currentLevel += 1
+			setup();
 		}
 	}
 }
@@ -141,9 +193,12 @@ function buttonPressed() {
 	player.jump();
 }
 
+function resetBtn() {
+	setup();
+}
 
 function levelOne() {
-	playButton.hide();
+	if (playButton) playButton.hide();
 	levelLogic()
 }
 
@@ -169,22 +224,31 @@ function levelSix() {
 
 function levelSeven() {
 	levelLogic()
+	if (thankYou) thankYou.show();
+	if (!thankYou) thankYou = createP("Thank you for playing my silly little game").addClass("thank-you")
 }
 
 function levelEight() {
 	levelLogic()
+	if (thankYou) thankYou.hide();
+	if (enjoy) enjoy.show();
+	if (!enjoy) enjoy = createP("I hope you've enjoyed it!").addClass("thank-you")
 }
 
 function levelNine() {
 	levelLogic()
+	if(enjoy) enjoy.hide();
+	if (oneMore) oneMore.show();
+	if (!oneMore) oneMore = createP("One more level!").addClass("one-more")
 }
 
 function levelTen() {
 	levelLogic()
+	if (oneMore) oneMore.hide();
+	if (final) final.show();
+	if (!final) final = createP("You can stick to the walls! Just hold ⬅ or ➡").addClass("one-more")
 }
 
 function gameOver() {
-}
-
-function gameComplete() {
+	if (playButton) playButton.show()
 }
